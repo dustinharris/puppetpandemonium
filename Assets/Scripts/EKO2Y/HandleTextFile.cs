@@ -1,16 +1,14 @@
 ﻿using UnityEngine;
-//using UnityEditor;
 using System.IO;
 using System.Collections.Generic;
 
 public class HandleTextFile : MonoBehaviour {
 
     public string fileName;
+    private string path { get { return Path.Combine(Application.streamingAssetsPath, fileName); } }
 
     void WriteString()
     {
-        string path = "Assets/Resources/" + fileName;
-
         //Write some text to the test.txt file
         StreamWriter writer = new StreamWriter(path, true);
         writer.WriteLine("Test");
@@ -22,8 +20,6 @@ public class HandleTextFile : MonoBehaviour {
     
     public void ReadString()
     {
-        string path = "Assets/Resources/" + fileName;
-
         //Read the text from directly from the test.txt file
         StreamReader reader = new StreamReader(path);
         Debug.Log(reader.ReadToEnd());
@@ -32,7 +28,6 @@ public class HandleTextFile : MonoBehaviour {
 
     public List<string> ConvertLevelLayoutToList()
     {
-        string path = "Assets/Resources/" + fileName;
         var platformStateList = new List<string>();
 
         //Read the text from directly from the test.txt file
@@ -50,6 +45,4 @@ public class HandleTextFile : MonoBehaviour {
         reader.Close();
         return platformStateList;
     }
-
-
 }
